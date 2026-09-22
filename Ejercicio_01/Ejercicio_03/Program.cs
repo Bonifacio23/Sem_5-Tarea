@@ -15,26 +15,30 @@ namespace Ejercicio_03
             for (int i = 0; i < N.Length; i++)
             {
                 N[i] = edad.Next(0, 120);
-                Console.WriteLine($"Edad{i + 1}: [{N[i]}]");
+                Console.WriteLine($"Edad{i + 1}: {N[i]}");
             }
             return N;
         }
+        static public void Imprimir(int[] N)
+        {
+            for (int i = 0; i < N.Length; i++)
+            {
+                Console.Write(N[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
         static public void Menor(int[] lista)
         {
-            int n = lista.Length;
-            for (int i = 0; i < n; i++)
+            int indiceMenor = 0;
+            for (int j = 1; j < lista.Length; j++)
             {
-                int menor = i;
-                for (int j = i + 1; j < n; j++)
+                if (lista[j] < lista[indiceMenor])
                 {
-                    if (lista[j] < lista[menor])
-                        menor = j;
+                    indiceMenor = j;
                 }
-                int temp = lista[i];
-                lista[i] = lista[menor];
-                lista[menor] = temp;
-                Console.WriteLine($"La menor edad es [{i + 1}]: {lista[i]}");
             }
+            Console.WriteLine($"La menor edad es: {lista[indiceMenor]}");
         }
         static public void Numero_Per(int[] N)
         {
@@ -50,16 +54,23 @@ namespace Ejercicio_03
         }
         static public void Buscar(int[] N)
         {
-
             Console.WriteLine("ingrese la edad a buscar: ");
             int b = int.Parse(Console.ReadLine());
+            bool encontrado = false;
+
             for (int i = 0; i < N.Length; i++)
             {
                 if (b == N[i])
+                {
                     Console.WriteLine($"Edad encontrada: {N[i]}");
-                else
-                    Console.WriteLine("edad no encontrada");
-                break;
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            if (!encontrado)
+            {
+                Console.WriteLine("Edad no encontrada");
             }
         }
         static void Main(string[] args) { 
@@ -69,6 +80,7 @@ namespace Ejercicio_03
                 int[] N = new int[n];
                 N = Leer(N);
                 Numero_Per(N);
+                Menor(N);
                 Console.WriteLine("Desea buscar una edad en el arreglo [s/n]");
                 String p = Console.ReadLine().ToLower();
                 if (p == "s")
