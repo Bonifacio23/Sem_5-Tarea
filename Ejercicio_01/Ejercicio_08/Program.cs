@@ -13,7 +13,7 @@ namespace Ejercicio_08
             Random rnd = new Random();
             for (int i = 0; i < N.Length; i++)
             {
-                N[i] = rnd.Next(0, 1000);
+                N[i] = rnd.Next(0, 200);
             }
         }
         static public void Imprimir(int[] N)
